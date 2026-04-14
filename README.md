@@ -1,35 +1,23 @@
 <div align="center">
 
-# 🗺️ Google Maps Business Leads Scraper
+# 🗺️ Google Maps Business Data Scraper
 
-### Production-Ready Lead Generation Engine
+**A high-performance, stealth-enabled Google Maps scraping engine that extracts structured business data (name, address, phone, website, rating, reviews, category) from any location or search query.**
 
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://python.org)
 [![Playwright](https://img.shields.io/badge/Playwright-1.52-2EAD33?logo=playwright&logoColor=white)](https://playwright.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-**A high-performance, stealth-enabled Google Maps scraping engine that extracts structured business data (name, address, phone, website, rating, reviews, category) from any location or search query. Built for lead generation agencies, sales teams, and market researchers.**
-
-[Features](#-key-features) · [Quick Start](#-quick-start) · [Usage](#-usage) · [Export](#-export-formats) · [Pricing](#-service-pricing-guide)
+[Features](#-key-features) · [Quick Start](#-quick-start) · [Usage](#-usage) · [Export](#-export-formats)
 
 </div>
 
 ---
 
-## 📋 Table of Contents
+## 📌 About This Project
 
-- [Key Features](#-key-features)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Quick Start](#-quick-start)
-- [Usage](#-usage)
-- [Export Formats](#-export-formats)
-- [Configuration](#-configuration)
-- [Service Pricing Guide](#-service-pricing-guide)
-- [Ethical Usage](#%EF%B8%8F-ethical-usage--legal-disclaimer)
-- [Contributing](#-contributing)
-- [License](#-license)
+A personal automation project exploring Google Maps data extraction using Playwright stealth techniques. This tool demonstrates expertise in browser automation, anti-detection patterns, async Python, data deduplication, and multi-format export — built as a hands-on learning exercise and portfolio showcase.
 
 ---
 
@@ -43,7 +31,7 @@
 | 📦 **Multi-Format Export** | CSV, XLSX (auto-width columns), and JSON output with timestamps |
 | 🔄 **Batch Scraping** | Feed a text file of queries — scrapes each with automatic cooldowns |
 | 🔁 **Auto-Retry with Backoff** | Tenacity-powered exponential backoff on transient failures |
-| 🧹 **Smart Deduplication** | Removes duplicate leads by business name + address composite key |
+| 🧹 **Smart Deduplication** | Removes duplicate entries by business name + address composite key |
 | 📊 **Rich CLI Dashboard** | Beautiful terminal output with progress bars, tables, and colored logs |
 | ⚙️ **Fully Configurable** | All settings via `.env` — no code changes needed |
 | 🌐 **Proxy Support** | Optional proxy rotation for high-volume scraping |
@@ -92,7 +80,6 @@ Google-Maps-Business-Leads-Scraper/
 ## 🚀 Quick Start
 
 ### Prerequisites
-
 - **Python 3.11+** installed ([download](https://www.python.org/downloads/))
 - **Git** installed
 
@@ -123,10 +110,9 @@ cp .env.example .env
 
 ---
 
-## 💻 Usage
+## 📖 Usage
 
 ### Single Query
-
 ```bash
 # Default query from .env
 python main.py
@@ -144,9 +130,7 @@ python main.py -q "gyms in Los Angeles" -f xlsx -n 100
 ### Batch Mode
 
 Create a `queries.txt` file:
-
 ```text
-# Lead generation queries
 restaurants in New York
 plumbers in Chicago
 dentists in Miami
@@ -154,13 +138,11 @@ real estate agents in Dallas
 ```
 
 Run batch:
-
 ```bash
 python main.py --batch queries.txt -n 30 -f csv
 ```
 
 ### All CLI Options
-
 ```
 usage: main.py [-h] [-q QUERY] [-n MAX_RESULTS] [-f {csv,xlsx,json}]
                [--batch BATCH] [--no-headless] [--no-dedup]
@@ -180,21 +162,13 @@ Options:
 
 All exports are saved to the `output/` directory with timestamps.
 
-### CSV Output
-
+### CSV
 ```csv
 business_name,address,phone,website,rating,reviews_count,category,plus_code,google_maps_url
 Joe's Pizza,7 Carmine St New York,+1 212-366-1182,joespizzanyc.com,4.5,12847,Pizza restaurant,,https://...
 ```
 
-### XLSX Output
-
-- Auto-sized columns
-- Ready for client delivery
-- Compatible with Excel, Google Sheets, Airtable
-
-### JSON Output
-
+### JSON
 ```json
 [
   {
@@ -205,11 +179,14 @@ Joe's Pizza,7 Carmine St New York,+1 212-366-1182,joespizzanyc.com,4.5,12847,Piz
     "rating": 4.5,
     "reviews_count": 12847,
     "category": "Pizza restaurant",
-    "plus_code": "",
     "google_maps_url": "https://www.google.com/maps/place/..."
   }
 ]
 ```
+
+### XLSX
+- Auto-sized columns
+- Ready for analysis in Excel or Google Sheets
 
 ---
 
@@ -234,52 +211,16 @@ All settings are managed via the `.env` file:
 
 ---
 
-## 💰 Service Pricing Guide
-
-This tool can be packaged and sold as a **fixed-price lead generation service**:
-
-### Pricing Tiers
-
-| Tier | Deliverable | Price Range |
-|------|-------------|-------------|
-| 🥉 **Starter** | 500 leads, 1 city, CSV export | **$800 – $1,000** |
-| 🥈 **Professional** | 2,000 leads, 5 cities, XLSX + dedup | **$1,200 – $1,800** |
-| 🥇 **Enterprise** | 5,000+ leads, unlimited cities, JSON API + ongoing | **$2,000 – $2,500** |
-
-### How to Sell
-
-1. **Identify clients**: Local marketing agencies, real estate firms, B2B sales teams, franchise consultants
-2. **Offer on platforms**: Fiverr, Upwork, LinkedIn, or direct cold outreach
-3. **Sample pitch**: *"I'll deliver 1,000+ verified business leads from Google Maps for your target market — name, phone, website, rating — in a clean spreadsheet, within 48 hours."*
-4. **Upsell ideas**:
-   - Monthly lead refresh subscriptions ($300–$500/mo)
-   - Data enrichment (email, social profiles) as add-on
-   - CRM-ready formatting (HubSpot, Salesforce import)
-   - Competitive analysis reports
-
-### Delivery Workflow
-
-```
-Client Request → Configure .env → Run Scraper → QA + Dedup → Deliver XLSX
-        ↓                                                         ↓
-   Define scope                                           Invoice & follow-up
-```
-
----
-
 ## ⚖️ Ethical Usage & Legal Disclaimer
 
-> **⚠️ IMPORTANT: Use this tool responsibly and ethically.**
+> **⚠️ This tool is for educational and research purposes only.**
 
-- This tool is provided for **educational and research purposes**.
 - **Respect Google's Terms of Service.** Automated scraping may violate Google's ToS. Use at your own risk.
 - **Comply with local laws**, including GDPR, CCPA, and other data privacy regulations.
 - **Do not use** extracted data for spamming, harassment, or any unlawful activity.
-- **Rate-limit your requests** to avoid overloading servers. The built-in delays are designed for this.
+- **Rate-limit your requests** to avoid overloading servers. The built-in delays are designed for responsible use.
 - **Obtain consent** before using personal data for marketing or outreach.
-- The authors assume **no liability** for misuse of this software.
-
-By using this tool, you agree to use it in compliance with all applicable laws and regulations.
+- The author assumes **no liability** for misuse of this software.
 
 ---
 
@@ -303,8 +244,8 @@ This project is licensed under the **MIT License** — see the [LICENSE](./LICEN
 
 <div align="center">
 
-**Built with ❤️ by [facingshootingstar](https://github.com/facingshootingstar)**
+**Built with ❤️ by [@facingshootingstar](https://github.com/facingshootingstar)**
 
-⭐ Star this repo if it helped you generate leads!
+*Made for personal learning and portfolio purposes.*
 
 </div>
