@@ -1,0 +1,8 @@
+playwright==1.52.0
+python-dotenv==1.1.0
+rich==14.0.0
+pandas==2.2.3
+openpyxl==3.1.5
+tenacity==9.1.2
+fake-useragent==2.2.0
+aiofiles==24.1.0
